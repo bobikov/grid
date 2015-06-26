@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+</head>
+<body>
+	
+	<aside><h1>NOTE</h1>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque qui at tenetur? Perferendis dignissimos nulla inventore id quas facilis maiores nam perspiciatis consequuntur. Sint perferendis facilis a voluptas temporibus molestias qui, praesentium quis. Nemo nihil repellendus, nesciunt, aliquam praesentium dolore, ad vero cupiditate maiores aperiam quisquam. Id placeat quo, fugiat!</aside>
+
+		<nav>
+			<ul>
+				<li id="slide"><i class="fa fa-play-circle fa-2x" style="line-height: 50px"></i></li>
+			</ul>
+			<ul>
+				<li>Menu1
+					<ul>
+						<li>subelem1
+							<ul>
+								<li>suu1</li>
+								<li>suu2</li>
+								<li>suu3</li>
+								<li>suu4</li>
+								<li>suu5</li>
+							</ul>
+						</li>
+						<li>subelem2
+							<ul>
+								<li>suu1</li>
+								<li>suu2</li>
+								<li>suu3</li>
+								<li>suu4</li>
+								<li>suu5</li>
+							</ul>
+
+						</li>
+						<li>subelem3</li>
+						<li>subelem4</li>
+						<li>subelem5</li>
+					</ul>
+				</li>
+				<li>Menu2
+					<ul>
+						<li>subelem1</li>
+						<li>subelem2</li>
+						<li>subelem3</li>
+						<li>subelem4</li>
+						<li>subelem5</li>
+					</ul>
+				</li>
+				<li>Menu3
+					<ul>
+						<li>subelem1</li>
+						<li>subelem2</li>
+						<li>subelem3</li>
+						<li>subelem4</li>
+						<li>subelem5</li>
+					</ul>
+				</li>
+				<li>Menu4
+					<ul>
+						<li>subelem1</li>
+						<li>subelem2</li>
+						<li>subelem3</li>
+						<li>subelem4</li>
+						<li>subelem5</li>
+					</ul>
+				</li>
+				<li>Menu5
+					<ul>
+						<li>subelem1</li>
+						<li>subelem2</li>
+						<li>subelem3</li>
+						<li>subelem4</li>
+						<li>subelem5</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	
+		<main>
+			<section id="sect">Lorem ipsum dolor sit amet, consectetur adipisicing elit. In facere impedit voluptatem rerum iusto autem soluta voluptate at nobis sunt quas natus corrupti molestias nostrum, tenetur dolorum odit reprehenderit, eveniet, minus neque, provident quidem enim porro. Illum in, perspiciatis pariatur, dignissimos reiciendis commodi facilis. Eius nulla nam blanditiis hic nemo provident, architecto repellat consectetur laboriosam illum optio obcaecati, voluptates dolore esse sint, incidunt tempore dignissimos, fuga officiis consequuntur. Laudantium eaque, quo quaerat deserunt voluptates sint laboriosam libero neque tenetur vero cupiditate cum autem earum, ut voluptate, dolor inventore fuga. Aut voluptates quidem recusandae, nam cupiditate veniam, a ratione inventore iusto!
+			<div class="" id="error"></div>
+			</section>
+
+		<i class="fa fa-link fa-2x "></i>
+		<div class="get">GET</div>
+		</main>
+		<script src="d3/d3.js"></script>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+			// var resp=[];
+			var count=[1, 2, 3];
+			var i=0;
+			var sect = document.getElementById("sect");
+			var supers = 10;
+			var data1 = [1, 2, 3];
+			var data2 = [];
+			
+
+$("#error").hide();
+$.ajaxSetup({
+	error: function(){$("#error").show();
+	$("#error").text("Error! Can't get content.");
+	}
+
+});		
+
+					
+	d3.select(".get").on("click", function(){
+					$.ajax({
+							type: "GET",	
+							url: "cgi/expr.py",
+							cache: false
+							})
+							.done(function( ff ){
+							var resp = ff.split(" ");
+							
+							
+	d3.select("#sect").selectAll("img")
+						.data(resp)
+						.enter().append("img")
+						.attr("src", function(d){return "img/"+d;});
+						});
+					});	
+				
+	// [1, 2, 3].map(function(elm, idx, arr){
+	// 	data2.push(elm * elm + 10);
+	// });
+	// alert(data2);
+
+</script>
+
+</body>
+</html>

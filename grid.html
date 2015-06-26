@@ -1,0 +1,199 @@
+<?php include "php/config.php" ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Grid System</title>
+	<link rel="stylesheet" href="css/grid.css">
+	<link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+	<link rel="stylesheet" href="css/animate.css/animate.css">
+	<link rel="stylesheet" href="sweetalert/lib/sweet-alert.css">
+</head>
+<body>
+
+<div class="wider" id="wii"></div>
+	<div class="planet" id="planeta">
+		
+		<div class="blog">
+		<h1 class="animated bounceInDown" id="super">Hello friend <a href="google.com">Push me</a><div class="reg"></div></h1>
+			<i class="fa fa-refresh fa-spin fa-2x" id="imageload" style="display:none; margin-left: 30%; position: absolute;"></i>	
+		<div class="main" id="main" name="main" >
+
+			<i class="fa fa-refresh fa-spin fa-2x" style="margin-left: 50%; margin-top: 5%;"></i>
+		
+		</div>
+		
+		<aside id="aside" class="animated bounceInRight">
+		<div class="recentart">Recent Articles<hr></div>
+		<article>
+			
+				<i class="fa fa-bars fa-1.2x "></i><h2>Subject 3</h2><br><section>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed, omnis!</section>
+				<hr>
+			
+		</article>
+			<!-- <article>
+			<i class="fa fa-bars " id="target"></i><h2>Subject 1</h2><br>
+				<section>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, sequi!<figure><img src="img/suck4.png" id="kisa"><figcaption>Girls</figcaption></figure>
+				<hr>
+			</section>
+		</article> -->
+		<div class="chatter">
+			<h2>Write post</h2>
+			<form name="form1" formnovalidate formmethod="get" autocomplete="off" >
+			<input type="text" id="subj" name="subj" required placeholder="Enter subject"><br>
+			<textarea name="chatter_textbox" id="chatter_textbox" cols="30" rows="10" placeholder="Enter text"></textarea>
+			<br>
+
+			<div href="#" onclick="submitFunc()" id="submit">Send Message</div>
+			<!-- <hr> -->
+
+			</form>
+		</div>
+		
+	</div>
+<script src="moment/moment.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="sweetalert/lib/sweet-alert.js"></script>
+<script src="d3/d3.js"></script>
+<script src="bower_components/autosize/dist/autosize.js"></script>
+<script>
+	$(document).ready(function(){
+		
+					$.ajaxSetup({cache:false});
+					// setInterval(function(){$(".main").load("php/ajaxLoad.php");}, 3000);
+					$(".main").load("php/ajaxLoad.php");
+					$("h1 .reg").load("php/reg.php");
+					// document.cookie.removeItem('name');
+					// alert(document.cookie);
+					
+		
+
+});
+				
+		
+	// var pic = document.getElementsByTagName("figure");
+	var pic2 = document.images;
+	var children = [];
+	var children2 = [];
+	// var w = window.open();
+	var pic = document.getElementById("kisa");
+	for (var i = 0; i < document.images.length; i++){
+	
+	pic2[i].onclick = function  () {
+		win = document.createElement("div"),
+		win.id="viw",
+		newtext = document.createTextNode("close"),
+		closer = document.createElement("div"),
+		wider = document.createElement("div"),
+		winpic = document.createElement("img");
+		closer.style.width = "50px";
+		closer.style.backgroundColor="#fff";
+		closer.style.cursor = "default";
+		closer.style.fontSize = "1.2em";
+		closer.style.textAlign = "center";
+		closer.style.fontFamily = "arial";
+		closer.style.border = "1px #304DC2 solid";
+		var wii = document.getElementById("wii");
+		wii.style.display = "block";		
+		// win.className = "";
+		closer.appendChild(newtext);
+			win.appendChild(closer);
+			win.appendChild(winpic);
+			winpic.setAttribute("src", this.getAttribute("src"));
+			winpic.style.maxWidth="100%";
+			win.className = "view  animated zoomIn";
+			wider.className = "wider";
+			var elemto = document.getElementById("planeta");
+			var pare = elemto.parentNode;
+			pare.insertBefore(win, elemto);
+			// pare.insertBefore(wider, elemto);
+
+			closer.onclick = function (){
+				wii.style.display = "none";
+				win.className = "view animated zoomOut";
+				setTimeout(function deleter(){
+					document.body.removeChild(win);
+				}, 300);
+				// document.body.removeChild(win);
+			};
+			wii.onclick = function (){
+				wii.style.display = "none";
+				win.className = "view animated zoomOut";
+				setTimeout(function deleter(){
+					document.body.removeChild(win);
+				}, 300);
+				// 	document.body.removeChild(win);
+					// document.body.removeChild(wider);
+			};
+				
+
+	};
+	}
+
+function submitFunc () {
+
+	if (form1.subj.value == '' || form1.chatter_textbox.value == ''){
+		sweetAlert("empty fields");
+		return;
+	}
+	$("#imageload").show();
+	var msg = form1.chatter_textbox.value,
+		subj = form1.subj.value;
+		date = moment().format("MMMM, Do");
+		clearInterval(inter);
+	$.post('php/postAjax.php', {msg: msg, subj: subj, date: date},
+		function(output){
+			$(".main").load("php/ajaxLoad.php");
+			$(output).insertBefore($('.main article').first());
+			$("#imageload").hide();
+		});
+		
+		// $(".main").load("php/ajaxLoad.php");
+	};
+
+
+$("#chatter_textbox").keydown(function(event){
+	if (event.which == 13){
+		$("#submit").css("margin", "3px 0 0 0");
+		$("#submit").css("box-shadow", "0px 1px 0px #9B4BA3, 1px 2px 5px #3C3C3C, inset 1px 1px 4px #D2D2D2");
+		
+	}
+
+
+});
+
+$("#chatter_textbox").keyup(function(event){
+	if (event.which == 13){
+		$("#submit").css("margin", "0 0 0 0");
+		$("#submit").css("box-shadow", "0px 4px 0px #9B4BA3, 1px 5px 5px #3C3C3C, inset 1px 1px 4px #D2D2D2");
+		submitFunc();
+	}
+});
+
+
+										// setInterval(function(){
+											
+												
+
+													
+													
+										// 			d3.select(".main_warning")
+										// 			.style("background", "url(/turbo.com/img/"+arr[i++]+")")
+										// 			.style("background-size", "cover");
+
+
+										// 			if (i == 3){
+										// 				i=0;
+
+
+										// 			}
+										// 			clearInterval(this);
+													
+
+
+										// }, 2000)
+</script>
+
+</body>
+</html>

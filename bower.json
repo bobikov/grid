@@ -1,0 +1,24 @@
+{
+  "name": "turbo.com",
+  "version": "0.0.0",
+  "authors": [
+    "Bobikov <kostyabobikov@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fontawesome": "~4.3.0",
+    "jquery": "~2.1.3",
+    "d3": "~3.5.5"
+  },
+  "devDependencies": {
+    "autosize": "~3.0.6"
+  }
+}

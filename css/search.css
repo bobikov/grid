@@ -1,0 +1,48 @@
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+ul li{
+	border: 1px solid #C0C0C0;
+	border-top: none;
+	font-family: arial;
+	font-size: 1.2em;
+	height: 30px;
+	width: 400px;
+	padding: 3px 3px 3px 4px;
+	line-height: 30px;
+	color: #8C7AFF;
+	cursor: pointer;
+	background-color: #FBFBFB;
+}
+/*ul li:hover {
+	background-color: #FBFBFB;
+}
+*/
+.searcher {
+	margin: 0 auto;
+	width: 500px;
+}
+#text {
+	height: 30px;
+	width: 400px;
+	font-size: 1.2em;
+	outline: none;
+	padding: 3px 2px 3px 3px;
+	
+}
+#submit {
+	background-color: #A9F59F;
+	color: white;
+	border-radius: 3px;
+	width: 60px;
+	height: 38px;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	line-height: 38px;
+	cursor: default;
+	-webkit-user-select: none;
+	font-family: arial;
+}
